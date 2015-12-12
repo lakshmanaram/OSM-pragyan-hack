@@ -87,24 +87,24 @@ public class MainActivity extends Activity {
         @Override
         protected Boolean doInBackground(String... params) {
             JSONParser jp=new JSONParser();
-
-            try {
-                JSONObject js=new JSONObject();
-
-                js.put("username",params[0]);
-                js.put("password", params[1]);
-                JSONObject jd=jp.makeHttpRequest(URL + "/login", "POST", js);
-                Log.i(TAG,js.toString());
-                int success=jd.getInt("logged_in");
-                return true;
+            return true;
+//            try {
+//                JSONObject js=new JSONObject();
+//
+//                js.put("username",params[0]);
+//                js.put("password", params[1]);
+//                JSONObject jd=jp.makeHttpRequest(URL + "/login", "POST", js);
+//                Log.i(TAG,js.toString());
+//                int success=jd.getInt("logged_in");
+//
 //                return success==1;                                                //authentication
-            }  catch (Exception e) {
-                e.printStackTrace();
-
-            }
-
-
-            return false;
+//            }  catch (Exception e) {
+//                e.printStackTrace();
+//
+//            }
+//
+//
+//            return false;
         }
 
         //  @TargetApi(Build.VERSION_CODES.GINGERBREAD)

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ordertime"
+            android:text="10:16" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderid"
+            android:text="127" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0px"
+            android:layout_weight="5"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/farmername"
+
+                android:text="Parth Thakkar" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/address"
+                android:text="16,ABC villa, 43/56 blabla street. bangalore" />
+        </LinearLayout>
+    </LinearLayout>

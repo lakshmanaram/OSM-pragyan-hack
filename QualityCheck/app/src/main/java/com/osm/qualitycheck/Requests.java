@@ -1,13 +1,10 @@
 package com.osm.qualitycheck;
 
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ListView;
 
-import com.osm.qualitycheck.R;
-import com.osm.qualitycheck.RequestsSliderFragment;
+import java.util.ArrayList;
 
 
 public class Requests extends ActionBarActivity {
@@ -16,13 +13,21 @@ public class Requests extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requests);
-//
-//        if (savedInstanceState == null) {
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            RequestsSliderFragment fragment = new RequestsSliderFragment();
-//            transaction.replace(R.id.fragment_content3, fragment);
-//            transaction.commit();
-//        }
+        ListView list = (ListView) findViewById(R.id.listView);
+        FarmerList temp = new FarmerList();
+            temp.farmerid = "affaffaf";
+            temp.farmername = "wgwegwg";
+            temp.orderid = "56746474";
+            temp.timestamp = "73242";
+        ArrayList<FarmerList> f = new ArrayList<>();
+        f.add(temp);
+        temp.farmerid = "sdffafsdgsfaf";
+        temp.farmername = "hmfvgmfwegwg";
+        temp.orderid = "12446474";
+        temp.timestamp = "4242";
+        f.add(temp);
+        CustomAdapterFarmer adapt = new CustomAdapterFarmer(getApplicationContext(),f);
+        list.setAdapter(adapt);
     }
 
 }
