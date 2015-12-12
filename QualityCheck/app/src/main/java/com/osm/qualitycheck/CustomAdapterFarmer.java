@@ -9,25 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by lakshmanaram on 12/12/15.
  */
-public class CustomAdapterFarmer extends BaseAdapter implements View.OnClickListener {
+public class CustomAdapterFarmer extends ArrayAdapter<FarmerList> implements View.OnClickListener {
 
     Context cont;
+    String user = null, pass = null;
     ArrayList<FarmerList> fl;
-    ArrayList<String> namel;
-    ArrayList<String> addressl;
-    ArrayList<String> timel;
-    CustomAdapterFarmer(Context context,ArrayList<FarmerList> f)
+    CustomAdapterFarmer(Context context,ArrayList<FarmerList> f,String username,String password)
     {
-//        super(context,R.layout.row,FarmerList);
+        super(context,R.layout.row,R.id.orderid,f);
         this.cont=context;
+        this.pass = password;
+        this.user = username;
         this.fl = f;
     }
     @Override
@@ -56,17 +58,12 @@ public class CustomAdapterFarmer extends BaseAdapter implements View.OnClickList
     }
 
     @Override
-    public Object getItem(int i) {
-        return fl.get(i);
-    }
-
-    @Override
     public long getItemId(int i) {
         return i;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder holder;
         if (v == null) {
@@ -77,6 +74,10 @@ public class CustomAdapterFarmer extends BaseAdapter implements View.OnClickList
         } else {
             holder = (ViewHolder) v.getTag();
         }
+        holder.name.setText(fl.get(position).farmername);
+        holder.orderid.setText(fl.get(position).orderid);
+        holder.address.setText(fl.get(position).address);
+        holder.time.setText(fl.get(position).timestamp);
         v.setOnClickListener(new OnItemClickListener(position));
         return v;
     }
@@ -89,7 +90,14 @@ public class CustomAdapterFarmer extends BaseAdapter implements View.OnClickList
 
         @Override
         public void onClick(View arg0) {
-            Log.d("hello",String.valueOf(mPosition)+" is clicked");
+            Intent i = new Intent(cont, FarmerActivity.class);
+            i.setFlags(i.FLAG_ACTIVITY_NEW_TASK);
+            i.putExtra("username", user);
+            i.putExtra("password",pass);
+            Farmerstat.f = fl.get(mPosition);
+            cont.startActivity(i);
+
+//            Log.d("hello",String.valueOf(mPosition)+" is clicked");
         }
     }
 }

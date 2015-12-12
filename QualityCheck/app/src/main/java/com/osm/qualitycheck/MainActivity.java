@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends Activity {
-    public static final String URL = "";
+    public static final String URL = "http://www.mocky.io/v2/566c687c1100005029c6a029";
     String user;
     String pass;
     String Qcheck = "Qualitycheckerid";
@@ -87,24 +87,22 @@ public class MainActivity extends Activity {
         @Override
         protected Boolean doInBackground(String... params) {
             JSONParser jp=new JSONParser();
-            return true;
-//            try {
-//                JSONObject js=new JSONObject();
-//
-//                js.put("username",params[0]);
-//                js.put("password", params[1]);
-//                JSONObject jd=jp.makeHttpRequest(URL + "/login", "POST", js);
-//                Log.i(TAG,js.toString());
-//                int success=jd.getInt("logged_in");
-//
-//                return success==1;                                                //authentication
-//            }  catch (Exception e) {
-//                e.printStackTrace();
-//
-//            }
-//
-//
-//            return false;
+            try {
+                JSONObject js=new JSONObject();
+
+                js.put("username",params[0]);
+                js.put("password", params[1]);
+                JSONObject jd=jp.makeHttpRequest(URL, "POST", js);
+                Log.i(TAG,js.toString());
+                String success=jd.getString("api_call_status");
+                return success.equals("success");                                                //authentication
+            }  catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
+
+            return false;
         }
 
         //  @TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -127,6 +125,8 @@ public class MainActivity extends Activity {
                 editor.putString("pass", pass);
                 editor.commit();
                 Intent i = new Intent(MainActivity.this, Requests.class);
+                i.putExtra("username",user);
+                i.putExtra("password",pass);
                 startActivity(i);
                 finish();
             }

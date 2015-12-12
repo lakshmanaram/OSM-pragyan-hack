@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:baselineAligned="false"
+    android:padding="10dp"
+    android:background="#FA6900"
+    android:id="@+id/row"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="horizontal">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:id="@+id/ordertime"
+            android:gravity="center"
             android:text="10:16" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/orderid"
-            android:text="127" />
-        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0px"
-            android:layout_weight="5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:text="Request No. " />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:id="@+id/orderid"
+                android:text="127" />
+                </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
                 android:id="@+id/farmername"
-
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
                 android:text="Parth Thakkar" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"
                 android:id="@+id/address"
-                android:text="16,ABC villa, 43/56 blabla street. bangalore" />
+                android:textSize="23sp"
+                android:text="16,ABC villa, 43/56 blabla street, bangalore, Karnataka" />
         </LinearLayout>
     </LinearLayout>

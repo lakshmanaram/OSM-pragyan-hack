@@ -79,7 +79,7 @@ public class JSONParser {
         String jsons="";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    is, "iso-8859-1"), 8);
+                    is, "UTF-8"), 8);
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -97,7 +97,7 @@ public class JSONParser {
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
-
+        Log.d("hello",jObj.toString());
         // return JSON String
         return jObj;
 
