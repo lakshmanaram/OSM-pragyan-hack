@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class FarmerActivity extends ActionBarActivity {
 String user = null,pass = null;
     FarmerList fl;
-    String URL = "";
+    String URL = "http://192.168.43.79:3000/api/qc/order";
     EditText et;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ String user = null,pass = null;
 
                 js.put("username", params[0]);
                 js.put("password", params[1]);
-                js.put("orderId",fl.orderid);
+                js.put("orderID",fl.orderid);
                 JSONArray jarray = new JSONArray();
                 for(int i=0;i<fl.veg.size();i++) {
                     JSONObject jo = new JSONObject();
@@ -96,6 +96,11 @@ String user = null,pass = null;
             super.onPostExecute(aBoolean);
             if (!aBoolean) {
                 wrongpassword();
+            }
+            else{
+                Intent i = new Intent(FarmerActivity.this,Requests.class);
+                startActivity(i);
+                finish();
             }
         }
     }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 public class Requests extends ActionBarActivity {
-final String URL = "http://www.mocky.io/v2/566c742f110000312dc6a036";
+final String URL = "http://192.168.43.79:3000/api/qc/placesToVisit";
     String user = null, pass = null;
     CustomAdapterFarmer adapt;
     ListView list;
@@ -30,6 +30,7 @@ final String URL = "http://www.mocky.io/v2/566c742f110000312dc6a036";
             user = b.getString("username");
             pass = b.getString("password");
         }
+        Log.d("hello",user + "coming" + pass);
         FarmerDetails a = new FarmerDetails();
         a.execute(user, pass);
 
@@ -58,9 +59,9 @@ final String URL = "http://www.mocky.io/v2/566c742f110000312dc6a036";
                         FarmerList temp = new FarmerList();
                         temp.farmername = j.getString("farmerName");
                         temp.timestamp = j.getString("orderTime");
-                        temp.orderid = j.getString("orderId");
+                        temp.orderid = j.getString("orderID");
                         temp.address = j.getString("address");
-                        temp.farmerid = j.getString("farmerId");
+                        temp.farmerid = j.getString("farmerID");
                         JSONArray nj = j.getJSONArray("orderList");
                         ArrayList<veggie> v = new ArrayList<>();
                         for(int k=0;k<nj.length();k++){

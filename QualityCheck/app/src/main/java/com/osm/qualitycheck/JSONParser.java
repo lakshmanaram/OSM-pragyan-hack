@@ -45,6 +45,7 @@ public class JSONParser {
                 // request method is POST
                 // defaultHttpClient
 //                JSONObject js=new JSONObject();
+                Log.d("hello",js.toString() + " "+url);
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setHeader("Accept", "application/json");

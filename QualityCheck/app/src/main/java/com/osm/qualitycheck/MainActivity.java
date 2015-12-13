@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends Activity {
-    public static final String URL = "http://www.mocky.io/v2/566c687c1100005029c6a029";
+    public static final String URL = "http://192.168.43.79:3000/api/login/qc";
     String user;
     String pass;
     String Qcheck = "Qualitycheckerid";
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
                 } else if (password.getText().length() == 0) {
                     Toast.makeText(MainActivity.this, "Enter valid password", Toast.LENGTH_SHORT).show();
                 } else {
-                    String user = username.getText().toString();
+                    user = username.getText().toString();
                     if (checkpref(user)) {
                         startActivity(new Intent(MainActivity.this, Requests.class));
                         finish();
@@ -93,8 +93,9 @@ public class MainActivity extends Activity {
                 js.put("username",params[0]);
                 js.put("password", params[1]);
                 JSONObject jd=jp.makeHttpRequest(URL, "POST", js);
-                Log.i(TAG,js.toString());
+                Log.i(TAG, js.toString());
                 String success=jd.getString("api_call_status");
+                Log.d("hello","am getting "+success+ " "+String.valueOf(success.equals("success")));
                 return success.equals("success");                                                //authentication
             }  catch (Exception e) {
                 e.printStackTrace();
@@ -109,21 +110,7 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            if(aBoolean){/*
-                SharedPreferences share1=getSharedPreferences("user",Context.MODE_PRIVATE);
-                String qcheck=share1.getString(Qcheck,":)");
-                if(qcheck.equals(":)")){
-                    SharedPreferences share=getSharedPreferences("user",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor=share.edit();
-                    editor.putString(Qcheck, user);
-                    editor.commit();
-                }
-                else {*/
-                SharedPreferences share=getSharedPreferences("user",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=share.edit();
-                editor.putString(Qcheck, user);
-                editor.putString("pass", pass);
-                editor.commit();
+            if(aBoolean){
                 Intent i = new Intent(MainActivity.this, Requests.class);
                 i.putExtra("username",user);
                 i.putExtra("password",pass);
