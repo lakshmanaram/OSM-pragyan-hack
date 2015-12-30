@@ -4,35 +4,54 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class Checkout extends ActionBarActivity {
 
+    String user = null,pass = null;
+    FarmerList fl;
+    String URL = "";
+    EditText et;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_checkout, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        TextView tv = (TextView) findViewById(R.id.tv);
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            user = b.getString("username");
+            pass = b.getString("password");
+            String t = b.getString("type");
+            if(t.equals("Market")){
+                tv.setText("Market CheckOut");
+            }
+            else{
+                tv.setText("Home Delivery CheckOut");
+            }
         }
-
-        return super.onOptionsItemSelected(item);
+        fl = Farmerstat.f;
+        ListView list = (ListView) findViewById(R.id.veggielist);
+        ArrayList<veggie> f = new ArrayList<>();
+        veggie v = new veggie();
+        v.veggies = "tomato";
+        v.kgs = "3.5";
+        f.add(v);
+        CustomAdapter adapt = new CustomAdapter(getApplicationContext(),f);
+        et = (EditText) findViewById(R.id.password);
+        list.setAdapter(adapt);
+        Button submit = (Button) findViewById(R.id.login);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

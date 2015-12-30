@@ -67,8 +67,8 @@ final String URL = "http://192.168.43.79:3000/api/qc/placesToVisit";
                         for(int k=0;k<nj.length();k++){
                             JSONObject jsobj = nj.getJSONObject(k);
                             veggie e =new veggie();
-                            e.veggies = jsobj.getString("itemName");
-                            e.kgs = jsobj.getString("itemWeight");
+                            e.veggies = jsobj.getString("name");
+                            e.kgs = jsobj.getString("weight");
                             v.add(e);
                         }
                         temp.veg = v;
